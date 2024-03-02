@@ -4,10 +4,10 @@ import Intro from '../../components/Intro/Intro'
 import PhotoSideBar from '../../components/PhotoSideBar/PhotoSideBar'
 import PostDiv from '../../components/PostDiv/PostDiv'
 import PostContent from '../../components/PostContent/PostContent'
-import Avatar from '../../assets/Avatar.png'
+import Avatar from '../../assets/Avatar1.png'
 import '../Profile/Profile.scss'
 import backgroundImage from '../../assets/background.jpeg'
-import profilePhoto from "../../assets/Avatar.png"
+import profilePhoto from "../../assets/Avatar1.png"
 import heart from "../../assets/heart-outline.svg"
 import comments_icon from '../../assets/chatbubble-ellipses-outline.svg'
 import star_icon from '../../assets/star-outline.svg'

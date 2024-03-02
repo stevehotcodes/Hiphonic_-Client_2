@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Avatar from '../../assets/Avatar.png';
+import Avatar from '../../assets/Avatar1.png';
 import close from '../../assets/close.png';
 import { getUserDetails, selectProfile } from '../Profile/ProfileSlice';
 import { createPost } from '../../features/Posts/PostSlice';

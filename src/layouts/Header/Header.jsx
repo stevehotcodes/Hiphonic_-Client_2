@@ -5,7 +5,7 @@ import notification_icon from '../../assets/notifications-outline.svg'
 import '../Header/Header.scss'
 
 
-import Avatar from "../../assets/Avatar.png";
+import Avatar from "../../assets/Avatar1.png";
 import { IoIosMenu } from "react-icons/io";
 import { useReducer } from 'react';
 import { useState } from 'react';

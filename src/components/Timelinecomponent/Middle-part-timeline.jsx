@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import Addpost from '../../pages/Timeline/Addpost';
 import './Middle-part-timeline.scss';
-import Avatar from '../../assets/Avatar.png';
+import Avatar from '../../assets/Avatar1.png';
 import mood from '../../assets/mood-smile.png';
 import VIDEOS from '../../assets/VIDEOS.png';
-import GROUPS from "../../assets/GROUPS.png";
-import PHOTOS from "../../assets/PHOTOS.png";
+import GROUPS from "../../assets/VIDEOS.png";
+import PHOTOS from "../../assets/VIDEOS.png";
 
 function MiddleTimeline() {
   

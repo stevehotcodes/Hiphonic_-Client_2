@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAddEventMutation } from './EventsSlice'
 import close from '../../assets/close.png'
-import Avatar from '../../assets/Avatar.png'
+import Avatar from '../../assets/Avatar1.png'
 import './createEvent.scss'
 import { useState } from 'react'
 

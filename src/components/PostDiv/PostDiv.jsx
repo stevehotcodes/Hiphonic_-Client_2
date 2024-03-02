@@ -3,7 +3,7 @@ import '../../components/PostDiv/PostDiv.scss'
 import live_video_icon from '../../assets/videocam-outline.svg'
 import live_video_icon2 from '../../assets/videocam-outline.svg'
 import actvity from '../../assets/videocam-outline.svg'
-import Avatar from '../../assets/Avatar.png'
+import Avatar from '../../assets/Avatar1.png'
 
 
 export const PostArray = [

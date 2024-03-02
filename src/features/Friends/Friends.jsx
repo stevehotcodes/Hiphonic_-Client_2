@@ -8,7 +8,7 @@ import {
   getFriends,
   getMessagesByUser,
 } from "../Friends/FriendsSlice";
-import Avatar from '../../assets/Avatar.png';
+import Avatar from '../../assets/Avatar1.png';
 import { PuffLoader } from "react-spinners";
 
 const Friends = () => {

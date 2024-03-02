@@ -3,7 +3,7 @@ import React from 'react'
 import Menu from "../../components/Menu/Menu"
 import Shortcuts from "../../components/Shortcuts/Shortcuts"
 import "../SideMenu/SideMenu.scss"
-import Avatar from '../../assets/Avatar.png'
+import Avatar from '../../assets/Avatar1.png'
 import { NavLink } from "react-router-dom"
 
 

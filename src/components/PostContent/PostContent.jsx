@@ -8,7 +8,7 @@ import star_icon from '../../assets/star-outline.svg'
 import happy_icon from '../../assets/happy-outline.svg'
 import content from '../../assets/content-photo-1.png'
 import dp from "../../assets/images.jpeg"
-import profilePhoto from "../../assets/Avatar.png"
+import profilePhoto from "../../assets/Avatar1.png"
 
 
 
