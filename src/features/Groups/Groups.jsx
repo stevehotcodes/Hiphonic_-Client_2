@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import AddGroup from './addGroup';
 import Modal from '../../components/Modal/Modal';
 import '../../pages/Timeline/Addpost.scss';
-
+import groupPlaceholder from '../../assets/unsplash_photo-6.png'
 const Groups = () => {
   const dispatch = useDispatch();
   const groups = useSelector(selectAllGroups);
@@ -51,6 +51,7 @@ const Groups = () => {
             </Modal>
           )}
         </div>
+        
 
         <div className='search-input-wrapper'>
           <input type='search' name='' id='' placeholder='search for groups' />
@@ -60,32 +61,35 @@ const Groups = () => {
       <div className='suggested-for-you-wrapper'>
        
         <div className='suggested'>
-          <span>Suggested for you</span>
-          <span>Groups you might be interested </span>
+            <span>Suggested for you</span>
+            <span>Groups you might be interested </span>    
         </div>
         <span>See All</span>
+        <div className="groups-card-container">
         {Array.isArray(groups) &&
           groups.map((group) => (
             
             <div className='group-card' key={group.group_id}>
               <div className='group-name'>
                 <div className='group-icon'>
-                  <span>{group.icon}</span> {/* Assuming 'icon' property exists in your group object */}
+                  <span>Group Icon</span> 
                 </div>
                 <div className='group-details'>
-                  <span>{group.group_name}</span> {/* Assuming 'name' property exists in your group object */}
-                  <span>{group.group_description}</span> {/* Assuming 'location' property exists in your group object */}
+                  <span>{group.group_name}</span> 
+                  <span>{group.group_description}</span> 
                 </div>
                 <FaEllipsis />
               </div>
               <div className='group-image'>
-                <img src={group.image} alt='' /> {/* Assuming 'image' property exists in your group object */}
+                <img src={groupPlaceholder} alt='' /> 
               </div>
               <div className='join-group-btn'>
-                <span>Join group</span>
+                <button>Join group</button>
               </div>
             </div>
           ))}
+        </div>
+       
       </div>
 
       <div className='recent-activity'></div>
