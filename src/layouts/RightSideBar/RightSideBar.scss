@@ -1,0 +1,15 @@
+.right-side-bar{
+    width:20%;
+    height:100vh;
+    display: flex;
+    
+    
+    flex-direction: column;
+    @media  (max-width:1024px) {
+        display: none;
+    }
+
+   
+    
+    
+}
