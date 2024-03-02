@@ -1,0 +1,45 @@
+.add-group-modal{
+    // border:2px solid rgb(182, 159, 159);
+    height: 100%;
+
+    form{
+        width:100%;
+       
+
+        .textarea{
+            // border:2px solid red;
+            // padding:2rem;
+            margin:1rem;
+            input{
+                // border:2px solid red;
+                border:2px solid rgb(214, 214, 214);
+                border-radius: 1rem;
+                width:90%;
+                padding:1rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+            }
+            
+
+
+        }
+        .footer{
+            // border: 2px solid red;
+            .btn{
+                button{
+                    width:97%;
+                    border:1px solid gray;
+                    outline:none;
+                }
+
+                button:hover{
+                    background-color: blue;
+                    color:white;
+                }
+
+            }
+
+        }
+        
+    }
+}

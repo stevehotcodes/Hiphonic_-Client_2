@@ -1,5 +1,5 @@
 import React from 'react'
-// import './addGroup.scss'
+import '../../features/Groups/addGroup.scss'
 import '../../pages/Timeline/Addpost.scss'
 import { useState } from 'react'
 import {createGroup} from '../Groups/groupSlice'
@@ -28,26 +28,29 @@ const AddGroup = ({closeGroup}) => {
     
 
   return (
-    <>
+    <div className='add-group-modal'>
  
 
  <form action="" onSubmit={handleCreateGroup}>
+   <h3 className='create-group-header'>Create Group</h3>
     <div className="textarea">
         <input  placeholder='group name'
            onChange={(e)=>{setGroupName(e.target.value)}}
         
         />
 
-
-        
         </div>
-        <input type="text" placeholder='group description'
-           onChange={(e)=>{setGroupDescription(e.target.value)}}
-        
-        />
+
+   <div className="textarea">
+      <input type="text" placeholder='group description'
+            onChange={(e)=>{setGroupDescription(e.target.value)}}
+         
+         />
+   </div>
+       
         <div className="footer">
          <div className="btn">
-            <button type='submit'>Create Group</button>
+            <button type='submit'>Create</button>
          </div>
          </div>
       </form>
@@ -58,7 +61,7 @@ const AddGroup = ({closeGroup}) => {
    
       
     
-    </>
+    </div>
   )
 }
 
