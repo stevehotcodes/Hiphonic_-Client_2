@@ -10,7 +10,10 @@ export const EventApi = createApi({
     getAllEvents: builder.query({
       query: () => ({
         url:`event`,
-        method:"GET"
+        method:"GET",
+        headers: {
+          Authorization: `${token}`
+        }
    
 
       })
@@ -20,7 +23,7 @@ export const EventApi = createApi({
         url: `event`,
         method: "POST",
         headers: {
-          Authorization: `Bearer ${token}`
+          Authorization: `${token}`
         },
         body: event, 
        
