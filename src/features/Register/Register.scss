@@ -1,53 +1,104 @@
-.form-holder{
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%,-50%);
-   position: fixed;
-   background: linear-gradient(to top left,rgb(22, 6, 100),rgb(0, 0, 0));
-   width: 400px;
-   height: 440px;
-   box-shadow: 5px 5px 10px rgba(0,0,0,0.45);
-   color: white;
-   border-radius: 5px;
-   p{
-      color: rgb(255, 47, 0);
-   }
-   .inputs-holder{
-      height: 80%;
-      display: flex;
+.register-holder {
+  background-color: rgb(245, 245, 245);
+
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .form-wrap {
+
+    width: 100vw;
+    background: linear-gradient(to top left, rgb(73, 58, 18), rgb(49, 150, 168));
+    height: 100vh;
+    display: flex;
+    align-items: center;
+
+    justify-content: space-around;
+
+    .side-text-form {
+      width: 600px;
+      height: 560px;
+      color: white;
+      box-shadow: 5px 5px 10px rgba(7, 8, 8, 0.45);
       flex-direction: column;
-      padding: 0 10px 0 10px;
-      justify-content: space-around;
-      // gap: 1rem;
-      line-height: 1px;
-      input{
-         color: rgb(0, 0, 0);
-         border-radius: 10px;
-         font-weight: 600;
-         outline: none;
-         font-size: 16px;
-         width: 350px;
-         height: 40px;
+      justify-content: center;
+      .text-wrap {
+        margin: 0 10px 0 40px;
+        width: 540px;
+        .double {
+          height: 80px;
+          background-color: rgba(8, 161, 221, 0.767);
+          width: 90px;
+          border-radius: 50%;
+          margin: 50px;
+        }
+        span {
+          color: rgba(8, 161, 221, 0.767);
+        }
       }
-      .checkbox{
-         border: 2px solid;
-         right: 0;
-         align-items: center;
-         display: flex;
+    }
+    .form-holder {
+      width: 590px;
+      height: 550px;
+      color: white;
+      border-radius: 5px;
+      p {
+        color: rgb(255, 47, 0);
       }
-   }
-   .btn{
-      align-items: center;
-      display: flex;
-      margin-top: 10px;
-      justify-content: space-around;
-      button{
-         color: white;
-         font-size: 16px;
-         font-weight: 700;
-         background-color: rgba(9, 5, 132, 0.743);
-         width: 150px;
-         margin: auto;
+      .inputs-holder {
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        padding: 0 10px 0 10px;
+        justify-content: space-around;
+        line-height: 1px;
+        .part-input {
+          background-color: rgb(255, 255, 255);
+          width: 560px;
+          height: 60px;
+          display: flex;
+          border-radius: 10px;
+          align-items: center;
+          box-shadow: 5px 5px 10px rgba(8, 8, 5, 0.85);
+          justify-content: space-between;
+          .react {
+            border: 2px solid;
+            margin-right: 10px;
+          }
+          input {
+            color: rgb(0, 0, 0);
+            border-radius: 10px;
+            font-weight: 600;
+            outline: none;
+            width: 490px;
+            height: 50px;
+            margin: 0 10px 0 10px;
+            font-size: 16px;
+          }
+        }
+        .checkbox {
+          border: 2px solid;
+          right: 0;
+          align-items: center;
+          display: flex;
+        }
       }
-   }
+      .btn {
+        align-items: center;
+        display: flex;
+        margin-top: 10px;
+        justify-content: space-around;
+
+        button {
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.45);
+          color: white;
+          font-size: 16px;
+          font-weight: 700;
+          background-color: rgba(9, 5, 132, 0.743);
+          width: 250px;
+          margin: auto;
+        }
+      }
+    }
+  }
 }
