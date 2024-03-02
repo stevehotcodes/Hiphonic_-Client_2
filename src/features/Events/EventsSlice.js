@@ -28,11 +28,21 @@ export const EventApi = createApi({
         body: event, 
        
       })
+    }),
+    updateEvent:builder.mutation({
+      query:(event) =>({
+        url:`event/${event_id}`,
+        method:"PUT",
+        body:event,
+        headers:{
+          Authorization: `Bearer ${token}`
+        }
+      })
     })
     
   })
 });
-export const {useGetAllEventsQuery,useAddEventMutation} = EventApi;
+export const {useGetAllEventsQuery,useAddEventMutation,useUpdateEventMutation} = EventApi;
 
 
 
