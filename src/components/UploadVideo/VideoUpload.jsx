@@ -70,7 +70,7 @@ const VideoUpload = ({ onClose }) => {
     </div>
   );
 };
-
+//use the react dropzone
 const dropzoneStyles = {
   width: '300px',
   height: '150px',
