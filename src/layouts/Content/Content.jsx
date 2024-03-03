@@ -1,8 +1,10 @@
 import '../Content/Content.scss'
+
+
 import {Routes} from 'react-router-dom'
 import { Route } from 'react-router-dom'
 import Friends from '../../features/Friends/Friends'
-import Videos from '../../components/UploadVideo/VideoUpload'
+import Videos from '../../pages/videos/Videos'
 import Groups from '../../features/Groups/Groups'
 import Photos from '../../pages/Photos/Photos'
 import Events from '../../features/Events/Events'
