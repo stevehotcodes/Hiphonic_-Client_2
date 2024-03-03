@@ -10,6 +10,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { MdLockPerson } from "react-icons/md";
 import { MdOutlineMarkunread } from "react-icons/md";
 import { FaCheckDouble } from "react-icons/fa6";
+import { PuffLoader } from 'react-spinners';
 
 const Login = () => {
   const dispatch = useDispatch();
