@@ -45,11 +45,22 @@ export const EventApi = createApi({
           Authorization: `${token}`
         }
       })
+    }),
+
+    deregisterEvent:builder.mutation({
+       query:(event_id)=>({
+         url:`event/attendees/${event_id}`,
+         method:'DELETE',
+         headers:{
+          Authorization: `${token}`
+        }
+         
+       })
     })
     
   })
 });
-export const {useGetAllEventsQuery,useAddEventMutation,useUpdateEventMutation,useRegisterEventMutation} = EventApi;
+export const {useGetAllEventsQuery,useAddEventMutation,useUpdateEventMutation,useRegisterEventMutation,useDeregisterEventMutation} = EventApi;
 
 
 
