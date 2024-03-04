@@ -6,7 +6,7 @@
     margin: 20px;
     background-color: #fff;
     border:2px solid red;
-  
+  height: 100%;
 
   
     .friend {
@@ -18,7 +18,7 @@
       flex-direction: column;
       border-radius: 10px;
       border:2px solid rgb(76, 0, 255);
-
+      height: 4rem;
   
       .top {
         display: flex;

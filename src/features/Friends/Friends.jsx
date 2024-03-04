@@ -7,6 +7,8 @@ import {
   selectAllMessages,
   getFriends,
   getMessagesByUser,
+  getFriendsStatus,
+  getFriendsError,
 } from "../Friends/FriendsSlice";
 import Avatar from '../../assets/Avatar1.png';
 import { PuffLoader } from "react-spinners";
@@ -15,8 +17,8 @@ const Friends = () => {
   const dispatch = useDispatch();
   const friends = useSelector(selectAllFriends);
   const messages = useSelector(selectAllMessages);
-  // const status = useSelector(getFriendsStatus);
-  // const error = useSelector(getFriendsError);
+  const status = useSelector(getFriendsStatus);
+  const error = useSelector(getFriendsError);
   const [selectedFriend, setSelectedFriend] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
   const [typedMessage, setTypedMessage] = useState('');

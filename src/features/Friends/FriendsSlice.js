@@ -1,5 +1,3 @@
-// FriendsSlice.js
-
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -18,7 +16,7 @@ export const getFriends = createAsyncThunk('friends/getFriends', async () => {
   }
 });
 
-export const getMessagesByUser = createAsyncThunk('friends/getMessagesByUser', async (user_Id) => {
+export const getMessagesByUser = createAsyncThunk('friends/getMessagesByUser', async (user_id) => {
   try {
     const authToken = localStorage.getItem("token");
     const config = {
@@ -26,7 +24,7 @@ export const getMessagesByUser = createAsyncThunk('friends/getMessagesByUser', a
         Authorization: `${authToken}`
       }
     };
-    const response = await axios.get(`http://localhost:3000/message/${user_Id}`, config);
+    const response = await axios.get(`http://localhost:3000/message/${user_id}`, config);
     return response.data;
   } catch (error) {
     throw error.response.data;
