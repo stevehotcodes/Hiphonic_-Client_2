@@ -20,6 +20,9 @@ dependencies:
   cloudinary:
     specifier: ^2.0.1
     version: 2.0.1
+  hiphonic-client-react:
+    specifier: 'link:'
+    version: 'link:'
   hooks:
     specifier: ^0.3.2
     version: 0.3.2

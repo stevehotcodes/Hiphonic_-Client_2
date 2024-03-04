@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Dropzone from 'react-dropzone';
+import { ClipLoader, PuffLoader } from 'react-spinners';
 
 const VideoUpload = ({ onClose }) => {
   const [videoFile, setVideoFile] = useState(null);
@@ -20,6 +21,7 @@ const VideoUpload = ({ onClose }) => {
       formData.append("upload_preset", "maold1b5");
 
       setUploading(true);
+
 
       const uploadResponse = await fetch("https://api.cloudinary.com/v1_1/dorsnetyf/video/upload", {
         method: "POST",
@@ -64,7 +66,15 @@ const VideoUpload = ({ onClose }) => {
       {videoFile && (
         <div>
           <p>Selected Video: {videoFile.name}</p>
-          <button onClick={handleUpload}>Upload Video</button>
+     
+          <button onClick={handleUpload}>{uploading ? 'Uploading...' : 'Upload'}</button>
+
+          {uploading&&<div className="status-loader">
+            <div className='status-loader-content'>
+              <PuffLoader loading={true} size={150} />
+              <p>Please wait ...... as  the video is being uploaded</p>
+            </div>
+          </div>}
         </div>
       )}
     </div>

@@ -19,6 +19,7 @@ import { photosApi } from '../features/photos/photosApi';
 import { EventApi } from '../features/Events/EventsSlice';
 import {GroupMemberApi} from '../features/Groups/groupMemberApi'
 import { GroupApi } from '../features/Groups/groupAPI'
+import { videoApi } from '../features/videos/VideoApi'
 
 export const store =configureStore({
     reducer:{
@@ -40,7 +41,8 @@ export const store =configureStore({
         [photosApi.reducerPath]:photosApi.reducer,
         [EventApi.reducerPath]:EventApi.reducer,
         [GroupApi.reducerPath]:GroupApi.reducer,
-        [GroupMemberApi.reducerPath]:GroupMemberApi.reducer
+        [GroupMemberApi.reducerPath]:GroupMemberApi.reducer,
+        [videoApi.reducerPath]:videoApi.reducer
         
     },
     middleware: (getDefaultMiddleware) =>
@@ -50,6 +52,7 @@ export const store =configureStore({
         EventApi.middleware,
         GroupApi.middleware,
         GroupMemberApi.middleware,
+        videoApi.middleware
     ),
 })
 

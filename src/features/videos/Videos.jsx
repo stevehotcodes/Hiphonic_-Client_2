@@ -20,7 +20,7 @@ const Videos = () => {
    const {data:videos, isLoading, isFetching, isError} = useGetVideosQuery();
    console.log("logged videos", videos);
 
-  // console.log(`data: ${videos}, isLoading: ${isLoading}, isError: ${isError}, isFetching:${isFetching}`)
+  console.log(`data: ${videos}, isLoading: ${isLoading}, isError: ${isError}, isFetching:${isFetching}`)
 
   // useEffect(async()=>{
   //  const response= await dispatch(fetchVideos);
