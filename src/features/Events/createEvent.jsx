@@ -6,9 +6,8 @@ import './createEvent.scss'
 import { useState } from 'react'
 import { ToasterContainer, ErrorToast, LoadingToast, SuccessToast } from '../../components/Toaster/Toaster'
 
-const CreateEvent = ({ isEventOpen }) => {
-   const [isEventclose, setEventOpen] = useState(false)
-
+const CreateEvent = ({closeEvent}) => {
+   
    const [addEvent, { error, isLoading }] = useAddEventMutation();
    if (error) {
       return <h1>error..</h1>
@@ -17,20 +16,19 @@ const CreateEvent = ({ isEventOpen }) => {
       return <h1>loading...</h1>
 
    }
-
-   const handleClose = () => {
-      setEventOpen(isEventclose)
-   }
+console.log(closeEvent)
+ 
    const handleSubmit = async (e) => {
       e.preventDefault();
       const name = e.target.eventName.value;
       const description = e.target.eventDescription.value;
       const location = e.target.eventLocation.value;
-      if (name === '' || description === '' || location === "") {
+      const photoUrl = e.target.eventPhotoUrl.value;
+      if (name === '' || description === '' || location === ""|| photoUrl === "") {
          ErrorToast("fill both paths")
       } else {
          try {
-            const response = await addEvent({ event_name: name, event_description: description, location: location }).unwrap();
+            const response = await addEvent({ event_name: name, event_description: description, location: location ,event_poster_url:photoUrl }).unwrap();
             LoadingToast()
             SuccessToast(response.message)
             return (response.message),
@@ -55,7 +53,7 @@ const CreateEvent = ({ isEventOpen }) => {
                         <p>@angalee</p>
                      </div>
                   </div>
-                  <div className="close" onClick={handleClose}>
+                  <div className="close" onClick={closeEvent}>
                      <img src={close} alt="close" />
 
                   </div>
@@ -66,6 +64,7 @@ const CreateEvent = ({ isEventOpen }) => {
                      placeholder="Eventname.."
                      id='eventName'
                      name='eventName'
+
                   />
                   <input
                      type="text"
@@ -82,8 +81,8 @@ const CreateEvent = ({ isEventOpen }) => {
                   <input
                      type="text"
                      placeholder="photourl"
-                     id='eventurl'
-                     name='eventurl'
+                     id='eventPhotoUrl'
+                     name='eventPhotoUrl'
                   />
 
                   <div className="footer">
