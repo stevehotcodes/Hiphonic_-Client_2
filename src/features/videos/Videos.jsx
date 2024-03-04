@@ -2,11 +2,32 @@
 
 import React, { useState } from 'react';
 import search from "../../assets/search.png";
-import "./Videos.scss";
-import VideoUpload from '../components/VideoUpload'; // Add this
+import "../videos/Videos.scss"
+//import VideoUpload from '../components/VideoUpload';
+import { useSelector } from 'react-redux';
+import { fetchVideos } from './VideoSlice';
+import { useGetVideosQuery } from './VideoApi';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import VideoUpload from '../../components/UploadVideo/VideoUpload';
+import { CircleLoader, PuffLoader } from 'react-spinners';
 
 const Videos = () => {
   const [showUploadModal, setShowUploadModal] = useState(false);
+  const [isMuted, SetIsMuted] = useState(true);
+  const [isPaused, setIsPaused] = useState(true);
+  const dispatch=useDispatch()
+   const {data:videos, isLoading, isFetching, isError} = useGetVideosQuery();
+   console.log("logged videos", videos);
+
+  // console.log(`data: ${videos}, isLoading: ${isLoading}, isError: ${isError}, isFetching:${isFetching}`)
+
+  // useEffect(async()=>{
+  //  const response= await dispatch(fetchVideos);
+  //  //const response= await useGetVideosQuery
+  //  console.log(response)
+  // })
+  
 
   const handleUploadButtonClick = () => {
     setShowUploadModal(true);
@@ -16,8 +37,19 @@ const Videos = () => {
     setShowUploadModal(false);
   };
 
-  return (
+  const toggleMute = () =>{
+    SetIsMuted(!isMuted);
+
+  };
+
+  const togglePause = () => {
+    setIsPaused(!isPaused);
+  };
+
+  return (<>
+   <VideoUpload/>
     <div className="Video-container">
+      <p>ttht</p>
       <div className="see-more-videos">
         <div className="video1">
           <div className="video-header">
@@ -29,26 +61,43 @@ const Videos = () => {
             <p>see all</p>
           </div>
           <div className="explore-categories">
-            <div className="video-container">
-              {/* ... (existing code) */}
-            </div>
+          {isLoading  &&<PuffLoader loading={true} color='#000' size={150} />}
+          <div>
+          {videos&&videos.map((video,index)=>(
+            <div key={index} className='videoWrapper'>
+              
+                <video
+                      width="320"
+                      height="240"
+                      autoPlay={!isPaused}
+                      muted={isMuted}
+                      controls
+                      // onClick={togglePause}
+                    >
+                      <source src={video.video_url} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                    <div className="video-controls">
+                      <button onClick={toggleMute}>{isMuted? 'Unmute': 'Mute'}</button>
+                      <button onClick={togglePause}>{isPaused ? 'Play' : 'Pause'}</button>
+                    </div>
+          </div>
+              
+              
+            ))}
+          </div>
+         
+            
           </div>
         </div>
       </div>
 
       <div className="minutes-ago-video">
-        {/* ... (existing code) */}
-
-        <button onClick={handleUploadButtonClick}>Upload Video</button>
-
-        {showUploadModal && (
-          <div className="upload-modal">
-            <VideoUpload onClose={handleUploadModalClose} />
-          </div>
-        )}
+    
       </div>
-    </div>
-  );
+    </div></>
+   
+ );
 };
 
 export default Videos;
