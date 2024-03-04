@@ -49,12 +49,13 @@ const Videos = () => {
   return (<>
    <VideoUpload/>
     <div className="Video-container">
-      <p>ttht</p>
       <div className="see-more-videos">
         <div className="video1">
           <div className="video-header">
             <h2>Video</h2>
+            <div className="search">
             <img src={search} alt="" />
+            </div>
           </div>
           <div className="text-in-categories">
             <h3>Categories To Explore</h3>
@@ -66,17 +67,17 @@ const Videos = () => {
           {videos&&videos.map((video,index)=>(
             <div key={index} className='videoWrapper'>
               
-                <video
-                      width="320"
-                      height="240"
+               <div className="vedios"> <video
+                      // width="320"
+                      max-height="240"
                       autoPlay={!isPaused}
                       muted={isMuted}
                       controls
-                      // onClick={togglePause}
+                      onClick={togglePause}
                     >
                       <source src={video.video_url} type="video/mp4" />
                       Your browser does not support the video tag.
-                    </video>
+                    </video></div>
                     <div className="video-controls">
                       <button onClick={toggleMute}>{isMuted? 'Unmute': 'Mute'}</button>
                       <button onClick={togglePause}>{isPaused ? 'Play' : 'Pause'}</button>
