@@ -1,7 +1,5 @@
 
 
-import groupReducer from '../features/Groups/groupSlice'
-
 import loginReducer from '../pages/Login/AuthenticationSlice'
 
 
@@ -19,11 +17,12 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import { configureStore } from '@reduxjs/toolkit';
 import { photosApi } from '../features/photos/photosApi';
 import { EventApi } from '../features/Events/EventsSlice';
-
+import {GroupMemberApi} from '../features/Groups/groupMemberApi'
+import { GroupApi } from '../features/Groups/groupAPI'
 
 export const store =configureStore({
     reducer:{
-        groups:groupReducer,
+        
 
         friends: friendsReducer,
 
@@ -39,14 +38,18 @@ export const store =configureStore({
         [notificationAPI.reducerPath]:notificationAPI.reducer,
         
         [photosApi.reducerPath]:photosApi.reducer,
-        [EventApi.reducerPath]:EventApi.reducer
+        [EventApi.reducerPath]:EventApi.reducer,
+        [GroupApi.reducerPath]:GroupApi.reducer,
+        [GroupMemberApi.reducerPath]:GroupMemberApi.reducer
         
     },
     middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
         notificationAPI.middleware,
         photosApi.middleware,
-        EventApi.middleware
+        EventApi.middleware,
+        GroupApi.middleware,
+        GroupMemberApi.middleware,
     ),
 })
 
