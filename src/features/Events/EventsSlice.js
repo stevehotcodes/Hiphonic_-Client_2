@@ -14,8 +14,6 @@ export const EventApi = createApi({
         headers: {
           Authorization: `${token}`
         }
-   
-
       })
     }),
     addEvent: builder.mutation({
@@ -31,18 +29,27 @@ export const EventApi = createApi({
     }),
     updateEvent:builder.mutation({
       query:(event) =>({
-        url:`event/${event_id}`,
+        url:`event/${event.event_id}`,
         method:"PUT",
         body:event,
         headers:{
-          Authorization: `Bearer ${token}`
+          Authorization: `${token}`
+        }
+      })
+    }),
+    registerEvent:builder.mutation({
+      query:(event_id)=>({
+        url:`event/attendees/${event_id}`,
+        method:"POST",
+        headers:{
+          Authorization: `${token}`
         }
       })
     })
     
   })
 });
-export const {useGetAllEventsQuery,useAddEventMutation,useUpdateEventMutation} = EventApi;
+export const {useGetAllEventsQuery,useAddEventMutation,useUpdateEventMutation,useRegisterEventMutation} = EventApi;
 
 
 
