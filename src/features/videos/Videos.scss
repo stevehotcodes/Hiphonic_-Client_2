@@ -2,9 +2,12 @@
 .Video-container {
   // width: 831px;
   width:99.7%;
+  height: 10rem;
   // margin-top: 5rem;
   // margin: auto;
+  border: 2px solid red;
   padding: 0 0.2rem;
+  display: flex;
   flex-wrap: wrap;
 
   
