@@ -1,6 +1,5 @@
 import '../Content/Content.scss'
 
-
 import {Routes} from 'react-router-dom'
 import { Route } from 'react-router-dom'
 import Friends from '../../features/Friends/Friends'

@@ -10,6 +10,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { CircleLoader, PuffLoader } from 'react-spinners';
+import { ErrorToast, LoadingToast, SuccessToast, ToasterContainer } from '../../components/Toaster/Toaster';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       const response = await dispatch(authenticationUser(data));
+      console.log(response)
       const token = response.payload.token;
       const user_id=response.payload.user["user_id"]
       console.log(token,user_id)
@@ -41,9 +43,15 @@ const Login = () => {
       if (token && user_id) {
         localStorage.setItem('token', token);
         localStorage.setItem('user_id',user_id)
+        LoadingToast
+        SuccessToast(
+          " Login successful"
+        )
         
+      
         navigate('/profile');
       } else {
+         ErrorToast("Invalid credentials")
         navigate('/');
       }           
     } catch (error) {
@@ -64,10 +72,7 @@ const Login = () => {
     
     
     }
-
-
-
-
+    <ToasterContainer/>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-lholder">
           <div className="inputs-holder">
