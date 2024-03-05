@@ -7,23 +7,26 @@ import '../Events/updateEvents.scss';
 
 const UpdateEvent = ({ closeUpdate, event }) => {
    console.log(event);
-   const [updateEvent, { isLoading }] = useUpdateEventMutation();
+   const [updateEvent] = useUpdateEventMutation(); 
 
    const handleSubmit = async (e) => {
       e.preventDefault();
       const name = e.target.eventName.value;
       const description = e.target.eventDescription.value;
       const location = e.target.eventLocation.value;
-      const eventId = event.id;
+      const photoUrl = e.target.eventurl.value; 
+      const eventDate = e.target.eventDate.value; 
+      const eventId = event.event_id;
 
-      if (name === '' || description === '' || location === "") {
+      if (name === '' || description === '' || location === ""|| photoUrl === "") {
          ErrorToast("Please fill in all fields.");
       } else {
          try {
-            LoadingToast();
-            const response = await updateEvent({ eventId, name, description, location }).unwrap();
-            SuccessToast(response.message);
+            const response = await updateEvent({ event_id: eventId, event_name: name, event_description: description, location: location, event_poster_url: photoUrl,event_date:eventDate });
+            LoadingToast("Updating event...");
+            SuccessToast(response.data.message);
             e.target.reset();
+            closeUpdate();
          } catch (error) {
             ErrorToast("Error when updating the event.");
          }
@@ -72,9 +75,15 @@ const UpdateEvent = ({ closeUpdate, event }) => {
                      id='eventurl'
                      name='eventurl'
                   />
+                  <input
+                     type="date"
+                     placeholder="event date"
+                     id='eventDate'
+                     name='eventDate'
+                  />
                   <div className="footer">
                      <div className="btn">
-                        <button type="submit" disabled={isLoading}>Update Event</button>
+                        <button type="submit">Update Event</button>
                      </div>
                   </div>
                </div>
