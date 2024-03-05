@@ -12,7 +12,7 @@ const EventsHandler = () => {
   const [isUpdateOpen, setUpdateOpen] = useState(false);
   const [clickedEvents, setClickedEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
-  const [isRegistered, setIsRegistered] = useState(false);
+
 
   const { data: events, isLoading, isFetching, isError } = useGetAllEventsQuery();
   const [registerEvent, { isLoading: registerLoading, isError: registerError }] = useRegisterEventMutation();
@@ -29,13 +29,13 @@ const EventsHandler = () => {
   const handleRegister = async (event) => {
     try {
       const { event_id } = event;
-      if (!clickedEvents.includes(event_id)) {
-        setClickedEvents([...clickedEvents, event_id]);
+    
+       
         LoadingToast("Registering...");
         const response = await registerEvent(event_id);
         SuccessToast(response.data.message);
-        setIsRegistered(true);
-      }
+    
+      
     } catch (error) {
       ErrorToast("Failed to register for the event");
     }
@@ -73,8 +73,8 @@ const EventsHandler = () => {
                 </div>
               </div>
               <div className="register">
-                {isRegistered ? (
-                  <button onClick={handleOptOut}>Opt Out</button>
+                {event.is_registered ? (
+                  <button onClick={()=> handleOptOut(event)} >Opt Out</button>
                 ) : (
                   <button disabled={clickedEvents.includes(event.event_id)} onClick={() => handleRegister(event)}>Register</button>
                 )}
