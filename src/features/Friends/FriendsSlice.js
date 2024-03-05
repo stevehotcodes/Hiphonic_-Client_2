@@ -48,7 +48,7 @@ export const sendMessage = createAsyncThunk('friends/sendMessage', async ({ rece
       content,
     };
 
-    const response = await axios.post('http://localhost:3000/message', data, config);
+    const response = await axios.post('http://localhost:3000/message/new', data, config);
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -56,7 +56,7 @@ export const sendMessage = createAsyncThunk('friends/sendMessage', async ({ rece
 });
 
 
-export const getMessagesBySender = createAsyncThunk('friends/getMessagesBySender', async () => {
+export const getMessages = createAsyncThunk('friends/getMessages', async () => {
   try {
     const authToken = localStorage.getItem("token");
     const config = {
@@ -65,7 +65,7 @@ export const getMessagesBySender = createAsyncThunk('friends/getMessagesBySender
       },
     };
 
-    const response = await axios.get('http://localhost:3000/message/sender', config);
+    const response = await axios.get('http://localhost:3000/message/', config);
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -117,14 +117,14 @@ const friendsSlice = createSlice({
         state.status = 'failed';
         state.error = action.error.message;
       })
-      .addCase(getMessagesBySender.pending, (state) => {
+      .addCase(getMessages.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(getMessagesBySender.fulfilled, (state, action) => {
+      .addCase(getMessages.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.messages = action.payload;
       })
-      .addCase(getMessagesBySender.rejected, (state, action) => {
+      .addCase(getMessages.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       });

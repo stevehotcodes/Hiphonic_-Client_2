@@ -13,6 +13,7 @@ import RightSideBarMobile from '../RightSideBar-mobile/RightSideBarMobile';
 // import Notification from '../../pages/Notification/Notification'
 import SideMenu from '../../layouts/SideMenu/SideMenu';
 import { useGetNotificationsQuery } from '../../features/Notifications/NotificationAPi';
+import Messages from '../../pages/Messages/Messages';
 
 
 
@@ -130,6 +131,12 @@ const Header = () => {
   }
 
 {/* </div> */}
+
+  {
+    state.isMessagePageOpen&&(
+      <Messages/>
+    )
+  }
 
 </div>
 );

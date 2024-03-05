@@ -1,4 +1,3 @@
-// Friends.js
 
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +10,7 @@ import {
   getMessagesByUser,
   getFriendsStatus,
   getFriendsError,
-  sendMessage, // Import the sendMessage action
+  sendMessage, 
 } from "../Friends/FriendsSlice";
 import Avatar from '../../assets/Avatar1.png';
 import { PuffLoader } from "react-spinners";
