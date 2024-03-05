@@ -72,7 +72,7 @@ const Groups = () => {
   return (
     <>
     <ToasterContainer/>
-     {isError && <div>Error:{error}</div>}
+     {/* {isError && <div>Error:{error}</div>} */}
     
      <div className='groups-container'>
       <div className='group-header-wrapper'>
