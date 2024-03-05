@@ -42,7 +42,7 @@ function MiddleTimeline() {
        
           {isEditOpen &&
             ReactDOM.createPortal(
-              <Addpost closeEdit={closeEdit} />, // Pass closeEdit function as prop
+              <Addpost closeEdit={closeEdit} />, 
               document.body
             )}
         </div>

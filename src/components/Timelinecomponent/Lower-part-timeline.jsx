@@ -40,6 +40,7 @@ const LowerTimeline = () => {
     // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
   }, [dispatch]);
+  console.log(posts)
 
   return (
     <>
@@ -55,8 +56,8 @@ const LowerTimeline = () => {
                 </div>
               </div>
               <div className="wrap-text">
-                <p>{post.content}</p>
-                <img src={post.image} alt="nopic" />
+                <p>{post.photo_url}</p>
+                <img src={post.photo_url} alt="nopic" />
               </div>
               <div className="wrap-likes">
                 <div className="div3">

@@ -10,7 +10,7 @@ const Addpost = ({ closeEdit }) => {
   const dispatch = useDispatch();
   const profile = useSelector(selectProfile);
   const [content, setContent] = useState('');
-  const [image, setImage] = useState('');
+  const [photo_url, setImage] = useState('');
 
   useEffect(() => {
     dispatch(getUserDetails(localStorage.getItem('user_id')));
@@ -18,8 +18,8 @@ const Addpost = ({ closeEdit }) => {
 
   const handlePostSubmit = async (e) => {
     e.preventDefault();
-    console.log(image, content);
-    const response = await dispatch(createPost({ content, image }));
+    console.log(photo_url, content);
+    const response = await dispatch(createPost({ content,photo_url }));
     console.log("response of post creation", response);
     // Handle response or errors here
   };
@@ -56,7 +56,7 @@ const Addpost = ({ closeEdit }) => {
           <input
             type="text"
             placeholder="Photo URL"
-            value={image}
+            value={photo_url}
             onChange={(e) => setImage(e.target.value)}
             />
             </div>

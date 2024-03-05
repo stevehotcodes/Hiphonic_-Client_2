@@ -10,10 +10,6 @@ export const commentSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
     prepareHeaders: (headers, { getState }) => {
-      // Retrieve token from localStorage
-   
-
-      // If token exists, set Authorization header
       if (token) {
         headers.set('Authorization', ` ${token}`);
       }
