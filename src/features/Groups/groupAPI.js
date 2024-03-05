@@ -27,7 +27,7 @@ export const GroupApi=createApi({
                   },
                 body:group
              }),
-            
+            invalidatesTags:[`Groups`]
         })
       })
     });

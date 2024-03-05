@@ -26,7 +26,9 @@ export const GroupMemberApi = createApi({
           Authorization: `${token}`  
         },
         
-      })
+        
+      }),
+      invalidatesTags:['GroupMembers']
     })
   })
 });
