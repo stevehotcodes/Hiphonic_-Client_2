@@ -1,12 +1,16 @@
+
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "react-modal";
-import '../Friends/Friends.scss';
+import './Friends.scss';
 import {
   selectAllFriends,
   selectAllMessages,
   getFriends,
   getMessagesByUser,
+  getFriendsStatus,
+  getFriendsError,
+  sendMessage, 
 } from "../Friends/FriendsSlice";
 import Avatar from '../../assets/Avatar1.png';
 import { PuffLoader } from "react-spinners";
@@ -15,13 +19,11 @@ const Friends = () => {
   const dispatch = useDispatch();
   const friends = useSelector(selectAllFriends);
   const messages = useSelector(selectAllMessages);
-  // const status = useSelector(getFriendsStatus);
-  // const error = useSelector(getFriendsError);
+  const status = useSelector(getFriendsStatus);
+  const error = useSelector(getFriendsError);
   const [selectedFriend, setSelectedFriend] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
   const [typedMessage, setTypedMessage] = useState('');
-
-
 
   useEffect(() => {
     if (status === 'idle') {
@@ -29,36 +31,44 @@ const Friends = () => {
     }
   }, [status, dispatch]);
 
-  console.log(friends)
-
   const handleSendMessage = async (friend) => {
     setSelectedFriend(friend);
     localStorage.setItem('receiver_id', friend.user_id);
     setModalOpen(true);
-    await dispatch(getMessagesByUser(friend.user_id)); 
+    await dispatch(getMessagesByUser(friend.user_id));
   };
 
   const handleModalClose = () => {
     setSelectedFriend(null);
     setModalOpen(false);
   };
+  const fetchMessages = async (user_id) =>{
+    await dispatch(getMessagesByUser(user_id));
+  };
 
   const handleSendClick = async () => {
     const receiver_id = localStorage.getItem('receiver_id');
     if (typedMessage !== '') {
-      await dispatch(sendMessage({
-        receiver_id: receiver_id,
-        content: typedMessage
-      }));
+      await dispatch(sendMessage({ receiver_id, content: typedMessage }));
+      
+      try {
+        
+      } catch (error){
+        console.log('Error sending message:', error);
+  
+      }
+      await dispatch(getMessagesByUser(receiver_id));
+      
       setTypedMessage('');
-      setModalOpen(false);
-      setSelectedFriend(null);
-    }
+      // setModalOpen(false);
+      // setSelectedFriend(null);
+    } 
+    
   };
 
   return (
     <div className="friends">
-      {status === 'loading' && <PuffLoader/>}
+      {status === 'loading' && <PuffLoader />}
       {status === 'failed' && <div>Error: {error}</div>}
       {status === 'succeeded' && friends &&
         friends.map((friend, index) => (
@@ -82,56 +92,58 @@ const Friends = () => {
                 )}
               </div>
             </div>
-            {selectedFriend && selectedFriend.id === friend.id && (
-              <Modal
-                isOpen={isModalOpen}
-                onRequestClose={handleModalClose}
-                contentLabel="Message Modal"
-                style={{
-                  content: {
-                    width: '500px',
-                    height: '300px',
-                    margin: 'auto',
-                    borderRadius: '8px',
-                    outline: 'none',
-                    padding: '20px',
-                    boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
-                  },
-                  overlay: {
-                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                  },
-                }}
-              >
-                <div className="bottom">
-                  <textarea
-                    style={{
-                      width: '100%',
-                      height: '250px',
-                      boxSizing: 'border-box',
-                    }}
-                    placeholder="Type your message..."
-                    value={typedMessage}
-                    onChange={(e) => setTypedMessage(e.target.value)}
-                  ></textarea>
-                  <div className="modal-buttons">
-                    <button onClick={handleSendClick}>Send</button>
-                    <button onClick={handleModalClose}>Cancel</button>
-                  </div>
-
-                  {/* Display messages in the modal */}
-                  <div className="messages-container">
-                    {messages.map((message, index) => (
-                      <div key={index}>
-                        <p>{message.content}</p>
-                        {/* Add additional information as needed */}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </Modal>
-            )}
           </div>
         ))}
+      
+      
+      {selectedFriend && (
+        <Modal
+          isOpen={isModalOpen}
+          onRequestClose={handleModalClose}
+          contentLabel="Message Modal"
+          style={{
+            content: {
+              width: '500px',
+              height: '300px',
+              margin: 'auto',
+              borderRadius: '8px',
+              outline: 'none',
+              padding: '20px',
+              boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+            },
+            overlay: {
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            },
+          }}
+        >
+          <div className="bottom">
+            <textarea
+              style={{
+                width: '100%',
+                height: '250px',
+                boxSizing: 'border-box',
+              }}
+              placeholder="Type your message..."
+              value={typedMessage}
+              onChange={(e) => setTypedMessage(e.target.value)}
+            ></textarea>
+            <div className="modal-buttons">
+              <button onClick={handleSendClick}>Send</button>
+              <button onClick={handleModalClose}>Cancel</button>
+            </div>
+
+            
+            <div className="messages-container">
+              {messages.map((message, index) => (
+                <div key={index}>
+                  <p>{message.content}</p>
+                  
+                </div>
+              ))}
+            </div>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };
