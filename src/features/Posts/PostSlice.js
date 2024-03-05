@@ -8,7 +8,7 @@ const initialState = {
   error: null,
 };
 
-export const createPost = createAsyncThunk("post/create", async ({content,image}) => {
+export const createPost = createAsyncThunk("post/create", async ({content,photo_url,}) => {
   try {
     const token = localStorage.getItem('token');
     console.log(token)
@@ -18,7 +18,7 @@ export const createPost = createAsyncThunk("post/create", async ({content,image}
         }
     };
     
-    const response = await axios.post(POST_API, {content,image},config);
+    const response = await axios.post(POST_API, {content,photo_url},config);
     return response.data;
   } catch (error) {
     return error.message;
