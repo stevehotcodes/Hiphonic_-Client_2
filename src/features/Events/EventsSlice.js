@@ -4,7 +4,7 @@ const token = localStorage.getItem('token')
 console.log(token)
 export const EventApi = createApi({
   reducerPath: "Events",
-
+tagTypes:["events"],
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/" }),
   endpoints: (builder) => ({
     getAllEvents: builder.query({
@@ -14,7 +14,8 @@ export const EventApi = createApi({
         headers: {
           Authorization: `${token}`
         }
-      })
+      }),
+     
     }),
     addEvent: builder.mutation({
       query: (event) => ({
@@ -25,7 +26,8 @@ export const EventApi = createApi({
         },
         body: event, 
        
-      })
+      }),
+      invalidatesTags:["events"]
     }),
     updateEvent:builder.mutation({
       query:(event) =>({
@@ -35,7 +37,8 @@ export const EventApi = createApi({
         headers:{
           Authorization: `${token}`
         }
-      })
+      }),
+      invalidatesTags:["events"]
     }),
     registerEvent:builder.mutation({
       query:(event_id)=>({
@@ -44,7 +47,8 @@ export const EventApi = createApi({
         headers:{
           Authorization: `${token}`
         }
-      })
+      }),
+      invalidatesTags:["events"]
     }),
 
     deregisterEvent:builder.mutation({
@@ -55,7 +59,8 @@ export const EventApi = createApi({
           Authorization: `${token}`
         }
          
-       })
+       }),
+       invalidatesTags:["events"]
     })
     
   })
