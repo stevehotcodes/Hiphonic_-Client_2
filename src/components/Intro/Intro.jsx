@@ -2,8 +2,8 @@ import React from 'react'
 import '../Intro/Intro.scss'
 
 import location from '../../assets/location-outline.svg'
-import calendar1 from  '../../assets/calendar-outline.svg'
-import calendar2 from  '../../assets/calendar-outline.svg'
+import calendar1 from  '../../assets/calendar.png'
+import calendar2 from  '../../assets/calendar.png'
 import link_photo from '../../assets/link-outline.svg'
 
 const Intro=({profile})=>{

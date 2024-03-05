@@ -1,6 +1,6 @@
 import map from "../../assets/40px.png";
 import "./EventsHandler.scss";
-import { useGetAllEventsQuery, useRegisterEventMutation } from "../../features/Events/EventsSlice";
+import { useDeregisterEventMutation, useGetAllEventsQuery, useRegisterEventMutation } from "../../features/Events/EventsSlice";
 import UpdateEvent from "../../features/Events/updateEvents";
 import { useState } from "react";
 import dots from '../../assets/dots.png'
@@ -13,9 +13,13 @@ const EventsHandler = () => {
   const [clickedEvents, setClickedEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
 
+  const [isRegistered, setIsRegistered] = useState(false);
+  
+
 
   const { data: events, isLoading, isFetching, isError } = useGetAllEventsQuery();
   const [registerEvent, { isLoading: registerLoading, isError: registerError }] = useRegisterEventMutation();
+  const[deregisterEvent]=useDeregisterEventMutation()
 
   const openUpdate = (event) => {
     setSelectedEvent(event);
@@ -26,7 +30,8 @@ const EventsHandler = () => {
     setUpdateOpen(false);
   };
 
-  const handleRegister = async (event) => {
+  const handleRegister = async (event,index) => {
+  
     try {
       const { event_id } = event;
     
@@ -36,15 +41,37 @@ const EventsHandler = () => {
         SuccessToast(response.data.message);
     
       
+        setClickedEvents([...clickedEvents, event_id]);
+        LoadingToast("Registering...");
+        const response = await registerEvent(event_id);
+        SuccessToast(response.data.message);
+        setIsRegistered(true);
+      
     } catch (error) {
       ErrorToast("Failed to register for the event");
     }
   };
 
-  const handleOptOut = () => {
-    // Handle opt-out logic here
-    setIsRegistered(false);
-    // Optionally, you can add logic to unregister the user from the event
+  const handleOptOut =async (event,index) => {
+     try {
+      setClickedEvents([...clickedEvents, event.event_id]);
+  
+      const{event_id}=event
+      
+      console.log(event)
+      const response = await deregisterEvent(event_id);
+      console.log(response)
+      LoadingToast("Opting out...");
+      SuccessToast(response.data.message);
+      setIsRegistered(false);
+      
+     } catch (error) {
+      console.log(error)
+      ErrorToast(error.message)
+      
+     }
+
+ 
   };
 
   return (
@@ -75,8 +102,11 @@ const EventsHandler = () => {
               <div className="register">
                 {event.is_registered ? (
                   <button onClick={()=> handleOptOut(event)} >Opt Out</button>
+                {isRegistered ? (
+                  <button onClick={(e)=>handleOptOut(event,index)}>Opt Out</button>
+
                 ) : (
-                  <button disabled={clickedEvents.includes(event.event_id)} onClick={() => handleRegister(event)}>Register</button>
+                  <button  onClick={(e) => handleRegister(event, index)}>Register</button>
                 )}
               </div>
               <div className="dots">

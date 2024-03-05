@@ -4,7 +4,7 @@ import Avatar from "../../assets/Avatar1.png";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts, selectPosts } from "../../features/Posts/PostSlice";
 import heart from "../../assets/heart.png";
-import mood from '../../assets/mood-smile.png'
+import mood from '../../assets/heart.png'
 import { CiPaperplane } from "react-icons/ci";
 import { AiFillMessage } from "react-icons/ai";
 import { FaShareAlt } from "react-icons/fa";
