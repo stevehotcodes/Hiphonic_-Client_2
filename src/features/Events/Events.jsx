@@ -1,7 +1,6 @@
 import calendar from "../../assets/calendar.png";
 import "./Events.scss";
 import dots from '../../assets/dots.png'
-// import EventsHandler from '../../components/Eventscomponent/EventsHandler'
 import EventsHandler from "../../components/Eventscomponent/EventsHandler";
 import { useState } from "react";
 import  ReactDOM  from 'react-dom';
@@ -11,13 +10,12 @@ const Events = () => {
   const [isEventOpen,setEventOpen] = useState(false);
 
 const openEvent =()=>{
-  ! setEventOpen(true)
+   setEventOpen(true)
 };
 const closeEvent = ()=>{
   setEventOpen(false)
 }
-console.log(isEventOpen)
-// console.log(closeEvent())
+
 
 
   return (
@@ -35,7 +33,6 @@ console.log(isEventOpen)
     document.body
   )
 }
-
           
           </div>
       
