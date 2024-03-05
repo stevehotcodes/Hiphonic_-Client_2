@@ -42,19 +42,28 @@ const Friends = () => {
     setSelectedFriend(null);
     setModalOpen(false);
   };
+  const fetchMessages = async (user_id) =>{
+    await dispatch(getMessagesByUser(user_id));
+  };
 
   const handleSendClick = async () => {
     const receiver_id = localStorage.getItem('receiver_id');
     if (typedMessage !== '') {
       await dispatch(sendMessage({ receiver_id, content: typedMessage }));
       
-      // After sending the message, you may choose to refetch messages or update the messages state
+      try {
+        
+      } catch (error){
+        console.log('Error sending message:', error);
+  
+      }
       await dispatch(getMessagesByUser(receiver_id));
-
+      
       setTypedMessage('');
-      setModalOpen(false);
-      setSelectedFriend(null);
-    }
+      // setModalOpen(false);
+      // setSelectedFriend(null);
+    } 
+    
   };
 
   return (
