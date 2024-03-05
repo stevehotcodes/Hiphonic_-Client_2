@@ -24,7 +24,7 @@
       align-items: center;
       .title-by {
         margin: 10px 10px;
-        border: 2px solid;
+        // border: 2px solid;
         h3 {
           color: black;
           font-size: 16px;
@@ -131,17 +131,13 @@
       }
       .by-date {
         width: 100%;
-
         display: flex;
         align-items: center;
 
         line-height: 1px;
         .title-by {
-      
           width: 119px;
-
           line-height: 1px;
-
           p {
             font-size: 10px;
             font-weight: 500;
