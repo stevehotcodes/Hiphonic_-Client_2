@@ -5,7 +5,6 @@ export const SuccessToast = (message) => {
     duration: 2000,
   });
 };
-
 export const ErrorToast = (message) => {
   toast.error(message, {
     duration: 2000,

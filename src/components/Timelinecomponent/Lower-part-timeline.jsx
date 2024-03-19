@@ -20,16 +20,54 @@ const LowerTimeline = () => {
   const [currentDate, setCurrentDate] = useState(new Date().toLocaleDateString());
   
   const [addComment] = useAddCommentMutation();
+  const[isCommentInputOpen,setIsCommentInputOpen]=useState(false)
+
   
-  const handleAddComment = (id) => {
+  const handleAddComment = (id,e) => {
+    e.stopPropagation()
+    console.log(id)
     return () => {
-      addComment({ post_id: id, comment:content});
+      addComment({ post_id:id, content:comment});
     };
   };
 
   const incrementLikes = () => {
     setLikes(likes + 1);
   };
+  const handleCommentChange = (e) => {
+    const { value } = e.target;
+    setComment(prevState => ({
+      ...prevState,
+      [postId]: value
+    }));
+
+    setComment(e.target.value);
+  };
+
+
+  const handleOpenCommentInput=(postId,e)=>{
+     e.stopPropagation()
+    setComment(prevState => ({
+      ...prevState,
+      [postId]: ''
+    }));
+    setIsCommentInputOpen(true);
+    console.log(isCommentInputOpen);
+  }
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
 
   useEffect(() => {
     dispatch(getPosts());
@@ -72,21 +110,28 @@ const LowerTimeline = () => {
                   <FaShareAlt fontSize="26px" />
                   <span>201 share</span>
                 </div>
+                <div className="comment" onClick={(e)=>handleOpenCommentInput(post.post_id,e)}>Comment</div>
               </div>
               <div className="wrap-message">
-                <div>
+               {
+                 isCommentInputOpen?(
+                  <div>
                   <input
                     type="text"
                     placeholder="write your comment..."
                     value={comment}
-                    onChange={(e) => setComment(e.target.value)}
+                    onChange={handleCommentChange}
+                    // onChange={(e) => setComment(e.target.value)}
                   />
-                </div>
-                <CiPaperplane
+                   <CiPaperplane
                   fontSize="26px"
                   color="blue"
-                  onClick={handleAddComment(post.post_id)}
+                  onClick={(e)=>{handleAddComment(post.post_id,e)}}
                 />
+                </div>
+                 ): <button onClick={(e)=>{handleOpenCommentInput(post.post_id,e)}}>Open Comment Input</button>
+               }
+               
                 <div>
                   <img src={mood} alt="mood" />
                 </div>

@@ -42,11 +42,13 @@ export const store =configureStore({
         [EventApi.reducerPath]:EventApi.reducer,
         [GroupApi.reducerPath]:GroupApi.reducer,
         [GroupMemberApi.reducerPath]:GroupMemberApi.reducer,
-        [videoApi.reducerPath]:videoApi.reducer
+        [videoApi.reducerPath]:videoApi.reducer,
+        
         
     },
     middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
+        commentSlice.middleware,
         notificationAPI.middleware,
         photosApi.middleware,
         EventApi.middleware,
